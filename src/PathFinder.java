@@ -24,7 +24,7 @@ public class PathFinder {
 
         // 1. INITIALIZATION
         // TODO: Initialize distances array with Integer.MAX_VALUE for all nodes
-        int distances[] = new int[graph.NUM_NODES];
+        int[] distances = new int[graph.NUM_NODES];
         for (int i = 0; i < distances.length; i++) {
             distances[i] = Integer.MAX_VALUE;
         }
@@ -55,7 +55,7 @@ public class PathFinder {
         // Hint: Use a Comparator or make NodeDistance implement Comparable
 
         // TODO: Add the starting node to the priority queue with distance 0
-        NodeDistance first = new NodeDistance(0, 0);
+        NodeDistance first = new NodeDistance(startIndex, 0);
         myPQ.add(first);
 
         // 2. MAIN LOOP
@@ -114,9 +114,15 @@ public class PathFinder {
             // 3. RECONSTRUCT PATH
             // TODO: Call helper method to get the path list
             // TODO: result.setFinalPath(path, distances[endIndex]);
+        System.out.println("trying to build final pathway");
+        System.out.println();
+        System.out.println(graph.getNodeName(0));
+        System.out.println(graph.getNodeName(2));
+        System.out.println();
         result.setFinalPath(reconstructPath(prev, startIndex, endIndex), distances[endIndex]);
 
         System.out.println(result.getFinalPath());
+
         System.out.println();
         for(Integer x: distances) {
             System.out.println(x);
@@ -138,7 +144,8 @@ public class PathFinder {
         int pointer = endIndex;
         // TODO: Trace backwards from endIndex using the previous[] array
         while(pointer!=-1) {
-            System.out.println("Current path: " + path);
+//            System.out.println("Current path: " + path);
+//            System.out.println("Pointer is: " + pointer);
             path.add(pointer);
             pointer = previous[pointer];
         }
